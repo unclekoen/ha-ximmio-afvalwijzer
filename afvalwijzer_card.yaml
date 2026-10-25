@@ -6,28 +6,33 @@ content: >
   {% set pickups = [
     {
       "name": "Restafval",
-      "color": "#9e9e9e",
+      "image": "/local/afvalwijzer/restafval.svg",
       "date": states('sensor.non_recyclable_waste_pickup')
     },
     {
       "name": "GFT",
-      "color": "#4caf50",
+      "image": "/local/afvalwijzer/gft.svg",
       "date": states('sensor.organic_waste_pickup')
     },
     {
       "name": "Plastic/Pakketjes",
-      "color": "#ff9800",
+      "image": "/local/afvalwijzer/plastic.svg",
       "date": states('sensor.packages_waste_pickup')
+    },
+    {
+      "name": "Papier",
+      "image": "/local/afvalwijzer/papier.svg",
+      "date": states('sensor.paper_waste_pickup')
     }
   ] %}
 
-  {% set ns = namespace(next_name="Onbekend", next_color="#9e9e9e", next_date="9999-12-31") %}
+  {% set ns = namespace(next_name="Onbekend", next_image="/local/afvalwijzer/restafval.svg", next_date="9999-12-31") %}
 
   {% for pickup in pickups %}
     {% if pickup.date not in ['unknown', 'unavailable', 'None', ''] %}
       {% if pickup.date < ns.next_date and pickup.date >= today | string %}
         {% set ns.next_name = pickup.name %}
-        {% set ns.next_color = pickup.color %}
+        {% set ns.next_image = pickup.image %}
         {% set ns.next_date = pickup.date %}
       {% endif %}
     {% endif %}
@@ -37,10 +42,10 @@ content: >
   {% if pickup_date %}
     {% set days = (pickup_date - today).days %}
     {% if days == 0 %}
-  🗑️ <span style="color: {{ ns.next_color }}">**Vandaag: {{ ns.next_name }}**</span>
+  <img src="{{ ns.next_image }}" width="48"> **Vandaag: {{ ns.next_name }}**
     {% elif days == 1 %}
-  🗑️ <span style="color: {{ ns.next_color }}">**Morgen: {{ ns.next_name }}**</span>
+  <img src="{{ ns.next_image }}" width="48"> **Morgen: {{ ns.next_name }}**
     {% else %}
-  🗑️ <span style="color: {{ ns.next_color }}">Over **{{ days }} dagen**: {{ ns.next_name }}</span>
+  <img src="{{ ns.next_image }}" width="48"> Over **{{ days }} dagen**: {{ ns.next_name }}
     {% endif %}
   {% endif %}
