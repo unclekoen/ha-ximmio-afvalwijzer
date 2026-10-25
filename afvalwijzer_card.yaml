@@ -3,6 +3,7 @@ type: markdown
 content: >
   {% set today = now().date() %}
 
+  {# --- Volgende reguliere ophaling --- #}
   {% set pickups = [
     {
       "name": "Restafval",
@@ -18,11 +19,6 @@ content: >
       "name": "Plastic/Pakketjes",
       "image": "/local/afvalwijzer/plastic.svg",
       "date": states('sensor.packages_waste_pickup')
-    },
-    {
-      "name": "Papier",
-      "image": "/local/afvalwijzer/papier.svg",
-      "date": states('sensor.paper_waste_pickup')
     }
   ] %}
 
@@ -38,6 +34,7 @@ content: >
     {% endif %}
   {% endfor %}
 
+  {# --- Reguliere ophaling weergeven --- #}
   {% set pickup_date = strptime(ns.next_date, '%Y-%m-%d').date() if ns.next_date != '9999-12-31' else none %}
   {% if pickup_date %}
     {% set days = (pickup_date - today).days %}
@@ -47,5 +44,37 @@ content: >
   <img src="{{ ns.next_image }}" width="48"> **Morgen: {{ ns.next_name }}**
     {% else %}
   <img src="{{ ns.next_image }}" width="48"> Over **{{ days }} dagen**: {{ ns.next_name }}
+    {% endif %}
+  {% endif %}
+
+  {# --- Bereken 3e woensdag van deze en volgende maand --- #}
+  {% set pns = namespace(papier_date=none) %}
+
+  {% for offset in [0, 1] %}
+    {% if pns.papier_date == none %}
+      {% set check_year = (today.replace(day=1) + timedelta(days=32 * offset)).year %}
+      {% set check_month = (today.replace(day=1) + timedelta(days=32 * offset)).month %}
+      {# Eerste dag van de maand, zoek de eerste woensdag #}
+      {% set first_day = today.replace(year=check_year, month=check_month, day=1) %}
+      {% set first_wednesday = first_day + timedelta(days=(2 - first_day.weekday() + 7) % 7) %}
+      {% set third_wednesday = first_wednesday + timedelta(days=14) %}
+      {# Toon papier als het binnen 7 dagen is of nog niet geweest #}
+      {% if third_wednesday >= today %}
+        {% set pns.papier_date = third_wednesday %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {# --- Papier weergeven als binnen 7 dagen --- #}
+  {% if pns.papier_date %}
+    {% set papier_days = (pns.papier_date - today).days %}
+    {% if papier_days <= 7 %}
+      {% if papier_days == 0 %}
+  <img src="/local/afvalwijzer/papier.svg" width="48"> **Vandaag: Papier (school)**
+      {% elif papier_days == 1 %}
+  <img src="/local/afvalwijzer/papier.svg" width="48"> **Morgen: Papier (school)**
+      {% else %}
+  <img src="/local/afvalwijzer/papier.svg" width="48"> Over **{{ papier_days }} dagen**: Papier (school)
+      {% endif %}
     {% endif %}
   {% endif %}
