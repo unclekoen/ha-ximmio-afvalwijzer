@@ -6,31 +6,27 @@ content: >
   {% set pickups = [
     {
       "name": "Restafval",
-      "icon": "mdi:delete",
-      "color": "grey",
+      "color": "#9e9e9e",
       "date": states('sensor.non_recyclable_waste_pickup')
     },
     {
       "name": "GFT",
-      "icon": "mdi:delete",
-      "color": "green",
+      "color": "#4caf50",
       "date": states('sensor.organic_waste_pickup')
     },
     {
       "name": "Plastic/Pakketjes",
-      "icon": "mdi:delete",
-      "color": "orange",
+      "color": "#ff9800",
       "date": states('sensor.packages_waste_pickup')
     }
   ] %}
 
-  {% set ns = namespace(next_name="Onbekend", next_icon="mdi:delete", next_color="grey", next_date="9999-12-31") %}
+  {% set ns = namespace(next_name="Onbekend", next_color="#9e9e9e", next_date="9999-12-31") %}
 
   {% for pickup in pickups %}
     {% if pickup.date not in ['unknown', 'unavailable', 'None', ''] %}
       {% if pickup.date < ns.next_date and pickup.date >= today | string %}
         {% set ns.next_name = pickup.name %}
-        {% set ns.next_icon = pickup.icon %}
         {% set ns.next_color = pickup.color %}
         {% set ns.next_date = pickup.date %}
       {% endif %}
@@ -41,10 +37,10 @@ content: >
   {% if pickup_date %}
     {% set days = (pickup_date - today).days %}
     {% if days == 0 %}
-  <ha-icon icon="{{ ns.next_icon }}" style="color: {{ ns.next_color }}; width: 48px; height: 48px;"></ha-icon> **Vandaag: {{ ns.next_name }}**
+  🗑️ <span style="color: {{ ns.next_color }}">**Vandaag: {{ ns.next_name }}**</span>
     {% elif days == 1 %}
-  <ha-icon icon="{{ ns.next_icon }}" style="color: {{ ns.next_color }}; width: 48px; height: 48px;"></ha-icon> **Morgen: {{ ns.next_name }}**
+  🗑️ <span style="color: {{ ns.next_color }}">**Morgen: {{ ns.next_name }}**</span>
     {% else %}
-  <ha-icon icon="{{ ns.next_icon }}" style="color: {{ ns.next_color }}; width: 48px; height: 48px;"></ha-icon> Over **{{ days }} dagen**: {{ ns.next_name }}
+  🗑️ <span style="color: {{ ns.next_color }}">Over **{{ days }} dagen**: {{ ns.next_name }}</span>
     {% endif %}
   {% endif %}
