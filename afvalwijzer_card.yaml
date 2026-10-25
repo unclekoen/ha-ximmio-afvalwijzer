@@ -1,0 +1,50 @@
+type: markdown
+#title: Volgende ophaling
+content: >
+  {% set today = now().date() %}
+
+  {% set pickups = [
+    {
+      "name": "Restafval",
+      "icon": "mdi:delete",
+      "color": "grey",
+      "date": states('sensor.non_recyclable_waste_pickup')
+    },
+    {
+      "name": "GFT",
+      "icon": "mdi:delete",
+      "color": "green",
+      "date": states('sensor.organic_waste_pickup')
+    },
+    {
+      "name": "Plastic/Pakketjes",
+      "icon": "mdi:delete",
+      "color": "orange",
+      "date": states('sensor.packages_waste_pickup')
+    }
+  ] %}
+
+  {% set ns = namespace(next_name="Onbekend", next_icon="mdi:delete", next_color="grey", next_date="9999-12-31") %}
+
+  {% for pickup in pickups %}
+    {% if pickup.date not in ['unknown', 'unavailable', 'None', ''] %}
+      {% if pickup.date < ns.next_date and pickup.date >= today | string %}
+        {% set ns.next_name = pickup.name %}
+        {% set ns.next_icon = pickup.icon %}
+        {% set ns.next_color = pickup.color %}
+        {% set ns.next_date = pickup.date %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% set pickup_date = strptime(ns.next_date, '%Y-%m-%d').date() if ns.next_date != '9999-12-31' else none %}
+  {% if pickup_date %}
+    {% set days = (pickup_date - today).days %}
+    {% if days == 0 %}
+  <ha-icon icon="{{ ns.next_icon }}" style="color: {{ ns.next_color }}; width: 48px; height: 48px;"></ha-icon> **Vandaag: {{ ns.next_name }}**
+    {% elif days == 1 %}
+  <ha-icon icon="{{ ns.next_icon }}" style="color: {{ ns.next_color }}; width: 48px; height: 48px;"></ha-icon> **Morgen: {{ ns.next_name }}**
+    {% else %}
+  <ha-icon icon="{{ ns.next_icon }}" style="color: {{ ns.next_color }}; width: 48px; height: 48px;"></ha-icon> Over **{{ days }} dagen**: {{ ns.next_name }}
+    {% endif %}
+  {% endif %}
