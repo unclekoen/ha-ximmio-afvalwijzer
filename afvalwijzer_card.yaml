@@ -45,11 +45,11 @@ content: >
   {% if pickup_date %}
     {% set days = (pickup_date - today).days %}
     {% if days == 0 %}
-  <img src="{{ ns.next_image }}" width="48" style="vertical-align: middle;"> **Vandaag: {{ ns.next_name }}**
+  <img src="{{ ns.next_image }}" width="32" style="vertical-align: middle;"> **Vandaag: {{ ns.next_name }}**
     {% elif days == 1 %}
-  <img src="{{ ns.next_image }}" width="48" style="vertical-align: middle;"> **Morgen: {{ ns.next_name }}**
+  <img src="{{ ns.next_image }}" width="32" style="vertical-align: middle;"> **Morgen: {{ ns.next_name }}**
     {% else %}
-  <img src="{{ ns.next_image }}" width="48" style="vertical-align: middle;"> Over **{{ days }} dagen**: {{ ns.next_name }}
+  <img src="{{ ns.next_image }}" width="32" style="vertical-align: middle;"> Over **{{ days }} dagen**: {{ ns.next_name }}
     {% endif %}
   {% endif %}
 
@@ -74,11 +74,11 @@ content: >
     {% set papier_days = (pns.papier_date - today).days %}
     {% if papier_days <= 7 %}
       {% if papier_days == 0 %}
-  <img src="{{ img_papier }}" width="48" style="vertical-align: middle;"> **Vandaag: Papier (school)**
+  <img src="{{ img_papier }}" width="32" style="vertical-align: middle;"> **Vandaag: Papier (school)**
       {% elif papier_days == 1 %}
-  <img src="{{ img_papier }}" width="48" style="vertical-align: middle;"> **Morgen: Papier (school)**
+  <img src="{{ img_papier }}" width="32" style="vertical-align: middle;"> **Morgen: Papier (school)**
       {% else %}
-  <img src="{{ img_papier }}" width="48" style="vertical-align: middle;"> Over **{{ papier_days }} dagen**: Papier (school)
+  <img src="{{ img_papier }}" width="32" style="vertical-align: middle;"> Over **{{ papier_days }} dagen**: Papier (school)
       {% endif %}
     {% endif %}
   {% endif %}
