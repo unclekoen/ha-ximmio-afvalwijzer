@@ -3,26 +3,32 @@ type: markdown
 content: >
   {% set today = now().date() %}
 
+  {# --- Base64 afbeeldingen --- #}
+  {% set img_restafval = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTIwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEyMCI+CiAgPCEtLSBEZWtzZWwgLS0+CiAgPHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iMTIiIHJ4PSI0IiBmaWxsPSIjNzU3NTc1Ii8+CiAgPHJlY3QgeD0iMzUiIHk9IjQiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxMCIgcng9IjMiIGZpbGw9IiM3NTc1NzUiLz4KICA8IS0tIEJhayAtLT4KICA8cmVjdCB4PSIxNSIgeT0iMjIiIHdpZHRoPSI3MCIgaGVpZ2h0PSI4NSIgcng9IjYiIGZpbGw9IiM5ZTllOWUiLz4KCiAgPCEtLSBTdHJlcGVuIC0tPgogIDxyZWN0IHg9IjMwIiB5PSIzNSIgd2lkdGg9IjgiIGhlaWdodD0iNTUiIHJ4PSIzIiBmaWxsPSIjNzU3NTc1Ii8+CiAgPHJlY3QgeD0iNDYiIHk9IjM1IiB3aWR0aD0iOCIgaGVpZ2h0PSI1NSIgcng9IjMiIGZpbGw9IiM3NTc1NzUiLz4KICA8cmVjdCB4PSI2MiIgeT0iMzUiIHdpZHRoPSI4IiBoZWlnaHQ9IjU1IiByeD0iMyIgZmlsbD0iIzc1NzU3NSIvPgo8L3N2Zz4K" %}
+  {% set img_gft = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTIwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEyMCI+CiAgPCEtLSBEZWtzZWwgLS0+CiAgPHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iMTIiIHJ4PSI0IiBmaWxsPSIjMmU3ZDMyIi8+CiAgPHJlY3QgeD0iMzUiIHk9IjQiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxMCIgcng9IjMiIGZpbGw9IiMyZTdkMzIiLz4KICA8IS0tIEJhayAtLT4KICA8cmVjdCB4PSIxNSIgeT0iMjIiIHdpZHRoPSI3MCIgaGVpZ2h0PSI4NSIgcng9IjYiIGZpbGw9IiM0Y2FmNTAiLz4KCiAgPCEtLSBTdHJlcGVuIC0tPgogIDxyZWN0IHg9IjMwIiB5PSIzNSIgd2lkdGg9IjgiIGhlaWdodD0iNTUiIHJ4PSIzIiBmaWxsPSIjMmU3ZDMyIi8+CiAgPHJlY3QgeD0iNDYiIHk9IjM1IiB3aWR0aD0iOCIgaGVpZ2h0PSI1NSIgcng9IjMiIGZpbGw9IiMyZTdkMzIiLz4KICA8cmVjdCB4PSI2MiIgeT0iMzUiIHdpZHRoPSI4IiBoZWlnaHQ9IjU1IiByeD0iMyIgZmlsbD0iIzJlN2QzMiIvPgo8L3N2Zz4K" %}
+  {% set img_plastic = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTIwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEyMCI+CiAgPCEtLSBEZWtzZWwgLS0+CiAgPHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iMTIiIHJ4PSI0IiBmaWxsPSIjZTY1MTAwIi8+CiAgPHJlY3QgeD0iMzUiIHk9IjQiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxMCIgcng9IjMiIGZpbGw9IiNlNjUxMDAiLz4KICA8IS0tIEJhayAtLT4KICA8cmVjdCB4PSIxNSIgeT0iMjIiIHdpZHRoPSI3MCIgaGVpZ2h0PSI4NSIgcng9IjYiIGZpbGw9IiNmZjk4MDAiLz4KCiAgPCEtLSBTdHJlcGVuIC0tPgogIDxyZWN0IHg9IjMwIiB5PSIzNSIgd2lkdGg9IjgiIGhlaWdodD0iNTUiIHJ4PSIzIiBmaWxsPSIjZTY1MTAwIi8+CiAgPHJlY3QgeD0iNDYiIHk9IjM1IiB3aWR0aD0iOCIgaGVpZ2h0PSI1NSIgcng9IjMiIGZpbGw9IiNlNjUxMDAiLz4KICA8cmVjdCB4PSI2MiIgeT0iMzUiIHdpZHRoPSI4IiBoZWlnaHQ9IjU1IiByeD0iMyIgZmlsbD0iI2U2NTEwMCIvPgo8L3N2Zz4K" %}
+  {% set img_papier = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+CiAgPCEtLSBEb29zIGJvZHkgLS0+CiAgPHJlY3QgeD0iMTAiIHk9IjQwIiB3aWR0aD0iODAiIGhlaWdodD0iNTUiIHJ4PSI0IiBmaWxsPSIjNzk1NTQ4Ii8+CiAgPCEtLSBMaW5rZXIgZmxhcCAocGxhdCwgbGljaHQgZ2VrYW50ZWxkKSAtLT4KICA8cmVjdCB4PSIxMCIgeT0iMjIiIHdpZHRoPSIzNyIgaGVpZ2h0PSIyMCIgcng9IjIiIGZpbGw9IiM2ZDRjNDEiLz4KICA8IS0tIFJlY2h0ZXIgZmxhcCAocGxhdCwgbGljaHQgZ2VrYW50ZWxkKSAtLT4KICA8cmVjdCB4PSI1MyIgeT0iMjIiIHdpZHRoPSIzNyIgaGVpZ2h0PSIyMCIgcng9IjIiIGZpbGw9IiM4ZDZlNjMiLz4KICA8IS0tIFNjaGVpZGluZ3NsaWpuIHR1c3NlbiBmbGFwcGVuIC0tPgogIDxsaW5lIHgxPSI1MCIgeTE9IjIyIiB4Mj0iNTAiIHkyPSI0MiIgc3Ryb2tlPSIjNGUzNDJlIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8IS0tIFBsYWtiYW5kIC0tPgogIDxyZWN0IHg9IjQ0IiB5PSIyOCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjUwIiByeD0iMiIgZmlsbD0iI2JjYWFhNCIgb3BhY2l0eT0iMC43Ii8+Cjwvc3ZnPgo=" %}
+
   {# --- Volgende reguliere ophaling --- #}
   {% set pickups = [
     {
       "name": "Restafval",
-      "image": "/local/afvalwijzer/restafval.svg",
+      "image": img_restafval,
       "date": states('sensor.non_recyclable_waste_pickup')
     },
     {
       "name": "GFT",
-      "image": "/local/afvalwijzer/gft.svg",
+      "image": img_gft,
       "date": states('sensor.organic_waste_pickup')
     },
     {
       "name": "Plastic/Pakketjes",
-      "image": "/local/afvalwijzer/plastic.svg",
+      "image": img_plastic,
       "date": states('sensor.packages_waste_pickup')
     }
   ] %}
 
-  {% set ns = namespace(next_name="Onbekend", next_image="/local/afvalwijzer/restafval.svg", next_date="9999-12-31") %}
+  {% set ns = namespace(next_name="Onbekend", next_image=img_restafval, next_date="9999-12-31") %}
 
   {% for pickup in pickups %}
     {% if pickup.date not in ['unknown', 'unavailable', 'None', ''] %}
@@ -39,11 +45,11 @@ content: >
   {% if pickup_date %}
     {% set days = (pickup_date - today).days %}
     {% if days == 0 %}
-  <img src="{{ ns.next_image }}" width="48"> **Vandaag: {{ ns.next_name }}**
+  <img src="{{ ns.next_image }}" width="48" style="vertical-align: middle;"> **Vandaag: {{ ns.next_name }}**
     {% elif days == 1 %}
-  <img src="{{ ns.next_image }}" width="48"> **Morgen: {{ ns.next_name }}**
+  <img src="{{ ns.next_image }}" width="48" style="vertical-align: middle;"> **Morgen: {{ ns.next_name }}**
     {% else %}
-  <img src="{{ ns.next_image }}" width="48"> Over **{{ days }} dagen**: {{ ns.next_name }}
+  <img src="{{ ns.next_image }}" width="48" style="vertical-align: middle;"> Over **{{ days }} dagen**: {{ ns.next_name }}
     {% endif %}
   {% endif %}
 
@@ -54,11 +60,9 @@ content: >
     {% if pns.papier_date == none %}
       {% set check_year = (today.replace(day=1) + timedelta(days=32 * offset)).year %}
       {% set check_month = (today.replace(day=1) + timedelta(days=32 * offset)).month %}
-      {# Eerste dag van de maand, zoek de eerste woensdag #}
       {% set first_day = today.replace(year=check_year, month=check_month, day=1) %}
       {% set first_wednesday = first_day + timedelta(days=(2 - first_day.weekday() + 7) % 7) %}
       {% set third_wednesday = first_wednesday + timedelta(days=14) %}
-      {# Toon papier als het binnen 7 dagen is of nog niet geweest #}
       {% if third_wednesday >= today %}
         {% set pns.papier_date = third_wednesday %}
       {% endif %}
@@ -70,11 +74,11 @@ content: >
     {% set papier_days = (pns.papier_date - today).days %}
     {% if papier_days <= 7 %}
       {% if papier_days == 0 %}
-  <img src="/local/afvalwijzer/papier.svg" width="48"> **Vandaag: Papier (school)**
+  <img src="{{ img_papier }}" width="48" style="vertical-align: middle;"> **Vandaag: Papier (school)**
       {% elif papier_days == 1 %}
-  <img src="/local/afvalwijzer/papier.svg" width="48"> **Morgen: Papier (school)**
+  <img src="{{ img_papier }}" width="48" style="vertical-align: middle;"> **Morgen: Papier (school)**
       {% else %}
-  <img src="/local/afvalwijzer/papier.svg" width="48"> Over **{{ papier_days }} dagen**: Papier (school)
+  <img src="{{ img_papier }}" width="48" style="vertical-align: middle;"> Over **{{ papier_days }} dagen**: Papier (school)
       {% endif %}
     {% endif %}
   {% endif %}
