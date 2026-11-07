@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026.11.07b-beta
+_Release tag: `2026.11.0b1`_
 
 ### Gewijzigd
 - Integratie hernoemd van `twente_milieu` naar `ximmio_afvalwijzer` (domeinnaam, mapnaam, klassen)
@@ -13,6 +14,7 @@
 ---
 
 ## 2026.11.07-beta
+_Release tag: `2026.11.0b0`_
 
 ### Toegevoegd
 - Custom component `twente_milieu` met config flow, coordinator en sensor platform
