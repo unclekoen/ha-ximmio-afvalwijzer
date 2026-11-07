@@ -1,30 +1,28 @@
 # Changelog
 
-## 2026.11.07b-beta
-_Release tag: `2026.11.0b1`_
+## 2026.11.0b1
 
 ### Gewijzigd
 - Integratie hernoemd van `twente_milieu` naar `ximmio_afvalwijzer` (domeinnaam, mapnaam, klassen)
 - Leesbare naam gewijzigd van "Twente Milieu" naar "Ximmio Afvalwijzer"
 - GitHub repository URL bijgewerkt naar `https://github.com/unclekoen/ha-ximmio-afvalwijzer`
-- `manifest.json`: `documentation` en `issue_tracker` URLs gecorrigeerd
+- `manifest.json`: `documentation` en `issue_tracker` URLs gecorrigeerd, `codeowners` ingevuld
 - `sensor.py`: `_attr_unique_id` gebruikt nu de `DOMAIN` constante in plaats van een hardcoded string
 - README volledig herschreven: Marketplace installatie, ondersteunde gemeenten, verbeterde uitleg
 
 ---
 
-## 2026.11.07-beta
-_Release tag: `2026.11.0b0`_
+## 2026.11.0b0
 
 ### Toegevoegd
-- Custom component `twente_milieu` met config flow, coordinator en sensor platform
+- Custom component met config flow, coordinator en sensor platform
 - Ximmio API integratie (`FetchAdress` + `GetCalendar`)
 - Sensoren voor restafval, GFT, plastic/pakketjes, papier en kerstboom
 - Extra sensorattributen: `days_until` en `friendly_date`
 
 ---
 
-## 2026.10.26-alpha
+## 2026.10.1a
 
 ### Gewijzigd
 - Afbeeldingsgrootte gewijzigd van 48 naar 32 pixels in de dashboard card
@@ -32,7 +30,7 @@ _Release tag: `2026.11.0b0`_
 
 ---
 
-## 2026.10.25-alpha
+## 2026.10.0a
 
 ### Toegevoegd
 - Papier (school/vereniging) toegevoegd aan de dashboard card
