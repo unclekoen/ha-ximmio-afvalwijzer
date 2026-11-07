@@ -1,0 +1,5 @@
+{
+  "name": "Ximmio Afvalwijzer",
+  "description": "Simpele Home Assistant markdown card voor Ximmio Afvalwijzer afvalophalingen",
+  "render_readme": true
+}

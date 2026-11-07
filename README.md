@@ -1,58 +1,73 @@
-# ha-afvalwijzer
+# ha-ximmio-afvalwijzer
 
-Een simpele Home Assistant markdown card die toont welke container je de volgende keer aan de straat moet zetten. Geen extra HACS installaties nodig.
+Twee onderdelen voor Home Assistant om afvalophalingen via de Ximmio API te tonen:
 
-## Werking
+1. **`custom_components/ximmio_afvalwijzer/`** — een eigen HA integratie die rechtstreeks de ximmio API aanroept, zonder afhankelijkheid van Afvalwijzer
+2. **`afvalwijzer_card.yaml`** — een markdown card die de sensoren van de integratie toont met gekleurde icoontjes
 
-De kaart leest de sensoren van de **Afvalwijzer** integratie (Twente Milieu) en toont de eerstvolgende ophaling als een gekleurd icoontje met tekst. Papier wordt lokaal door een school opgehaald op de 3e woensdag van de maand — dat berekent de kaart zelf, zonder sensor.
+---
 
-### Wat je ziet
+## 1. Integratie installeren
 
-- Een gekleurd container-icoontje met darachter: `Vandaag`, `Morgen` of `Over X dagen` + naam
-- Een tweede regel met een bruin doosje voor papier, maar alleen als de ophaling binnen 7 dagen is
+### Via HACS (aanbevolen)
+1. Ga in HACS naar **Integraties → ⋮ → Aangepaste repositories**
+2. Voeg toe: `https://github.com/oomkoen/ha-ximmio-afvalwijzer` als type **Integratie**
+3. Zoek op "Ximmio Afvalwijzer" en installeer
+4. Herstart Home Assistant
 
-## Vereisten
+### Handmatig
+1. Kopieer de map `custom_components/ximmio_afvalwijzer/` naar `/config/custom_components/ximmio_afvalwijzer/` op je HA server
+2. Herstart Home Assistant
 
-### 1. Afvalwijzer integratie
+### Configureren
+1. Ga naar **Instellingen → Apparaten & Diensten → Integratie toevoegen**
+2. Zoek op **Ximmio Afvalwijzer**
+3. Vul in:
+   - **Postcode** (bijv. `7500AA`)
+   - **Huisnummer** (bijv. `10`)
+   - **Toevoeging** (optioneel, bijv. `A`)
 
-Installeer de [Afvalwijzer](https://github.com/xirixiz/homeassistant-afvalwijzer) integratie via HACS en stel je afvaldienst in. Dit levert de volgende sensoren op:
+### Sensoren
+Na installatie worden automatisch deze sensoren aangemaakt:
 
 | Sensor | Omschrijving |
 |--------|-------------|
-| `sensor.non_recyclable_waste_pickup` | Restafval |
-| `sensor.organic_waste_pickup` | GFT |
-| `sensor.packages_waste_pickup` | Plastic/Pakketjes |
+| `sensor.restafval_ophaaldag` | Volgende restafval datum |
+| `sensor.gft_ophaaldag` | Volgende GFT datum |
+| `sensor.plastic_pakketjes_ophaaldag` | Volgende plastic/pakketjes datum |
+| `sensor.papier_ophaaldag` | Volgende papier datum |
+| `sensor.kerstboom_ophaaldag` | Volgende kerstboom datum |
 
-> Controleer de exacte sensornamen via **Instellingen → Apparaten & Diensten → Entiteiten**.
+Elke sensor heeft ook extra attributen: `days_until` en `friendly_date`.
 
-### 2. SVG icoontjes
+---
 
-Kopieer de bestanden uit de map `images/` naar `/config/www/afvalwijzer/` op je Home Assistant server.
+## 2. Dashboard card
 
-| Bestand | Kleur | Type |
-|---------|-------|------|
-| `restafval.svg` | Grijs | Container |
-| `gft.svg` | Groen | Container |
-| `plastic.svg` | Oranje | Container |
-| `papier.svg` | Bruin | Doosje |
+De card toont de eerstvolgende ophaling als gekleurd icoontje. Papier (school) wordt berekend op basis van de 3e woensdag van de maand — geen sensor nodig.
 
-De makkelijkste manier om bestanden te uploaden is via de **Studio Code Server** add-on.
+### SVG icoontjes (optioneel)
+De card kan ook zonder de SVG bestanden werken als je base64 gebruikt (standaard). Wil je de bestanden toch apart hosten:
 
-Na het uploaden zijn de bestanden bereikbaar via `/local/afvalwijzer/restafval.svg` etc.
+1. Kopieer de bestanden uit `images/` naar `/config/www/afvalwijzer/`
+2. Pas de `img src` paden aan in de YAML naar `/local/afvalwijzer/...`
 
-## Installatie
-
+### Card installeren
 1. Ga in je dashboard naar **Bewerken → Kaart toevoegen → Handmatige kaart**
 2. Plak de inhoud van `afvalwijzer_card.yaml`
 3. Sla op
 
+---
+
 ## Papier (school)
 
-Papier wordt niet door Twente Milieu beheerd maar door een lokale school opgehaald, elke **3e woensdag van de maand**. De kaart berekent deze datum automatisch. De papierregel verschijnt alleen als de ophaling binnen 7 dagen is.
+Papier wordt in sommige wijken niet door de gemeente opgehaald maar door een lokale school, elke **3e woensdag van de maand**. De card berekent deze datum automatisch. De papierregel verschijnt alleen als de ophaling binnen 7 dagen is.
 
-## Voorbeeld
+---
 
-```
-🗑️ [container]  Over 2 dagen: Restafval
-📦 [doosje]     Over 5 dagen: Papier (school)
-```
+## Technische details
+
+- De integratie roept de **ximmio API** aan (`wasteapi.ximmio.com`)
+- Company code: `8d97bb56-5afd-4cbc-a651-b4f7314264b4`
+- Data wordt elke 8 uur ververst
+- Postcode en huisnummer worden opgeslagen in de HA config entry — niet in de repository

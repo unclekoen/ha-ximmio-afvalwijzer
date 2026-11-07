@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" width="100" height="120">
+  <!-- Stam -->
+  <rect x="42" y="98" width="16" height="16" rx="2" fill="#5d4037"/>
+  <!-- Onderste laag -->
+  <polygon points="50,18 10,90 90,90" fill="#2e7d32"/>
+  <!-- Middelste laag -->
+  <polygon points="50,10 18,68 82,68" fill="#388e3c"/>
+  <!-- Bovenste laag -->
+  <polygon points="50,2 28,50 72,50" fill="#43a047"/>
+  <!-- Ster -->
+  <polygon points="50,2 53,10 62,10 55,15 58,24 50,19 42,24 45,15 38,10 47,10" fill="#fdd835"/>
+</svg>
