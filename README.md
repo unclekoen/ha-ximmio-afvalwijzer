@@ -11,7 +11,7 @@ Twee onderdelen voor Home Assistant om afvalophalingen via de Ximmio API te tone
 
 ### Via HACS (aanbevolen)
 1. Ga in HACS naar **Integraties → ⋮ → Aangepaste repositories**
-2. Voeg toe: `https://github.com/oomkoen/ha-ximmio-afvalwijzer` als type **Integratie**
+2. Voeg toe: `https://github.com/unclekoen/ha-ximmio-afvalwijzer` als type **Integratie**
 3. Zoek op "Ximmio Afvalwijzer" en installeer
 4. Herstart Home Assistant
 
