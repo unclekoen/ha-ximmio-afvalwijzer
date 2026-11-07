@@ -1,6 +1,6 @@
 # Changelog
 
-## 2026.11.07-beta
+## 2026.11.07b-beta
 
 ### Gewijzigd
 - Integratie hernoemd van `twente_milieu` naar `ximmio_afvalwijzer` (domeinnaam, mapnaam, klassen)
@@ -12,7 +12,7 @@
 
 ---
 
-## 2026.11.07
+## 2026.11.07-beta
 
 ### Toegevoegd
 - Custom component `twente_milieu` met config flow, coordinator en sensor platform
@@ -22,7 +22,7 @@
 
 ---
 
-## 2026.10.26
+## 2026.10.26-alpha
 
 ### Gewijzigd
 - Afbeeldingsgrootte gewijzigd van 48 naar 32 pixels in de dashboard card
@@ -30,7 +30,7 @@
 
 ---
 
-## 2026.10.25
+## 2026.10.25-alpha
 
 ### Toegevoegd
 - Papier (school/vereniging) toegevoegd aan de dashboard card
