@@ -69,7 +69,7 @@ Na installatie worden automatisch deze sensoren aangemaakt:
 |--------|-------------|
 | `sensor.restafval_ophaaldag` | Volgende restafval datum |
 | `sensor.gft_ophaaldag` | Volgende GFT datum |
-| `sensor.plastic_pakketjes_ophaaldag` | Volgende plastic/pakketjes datum |
+| `sensor.verpakkingen_ophaaldag` | Volgende verpakkingen datum |
 | `sensor.papier_ophaaldag` | Volgende papier datum |
 | `sensor.kerstboom_ophaaldag` | Volgende kerstboom datum |
 

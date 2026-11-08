@@ -26,7 +26,7 @@ content: >
     {
       "name": "Verpakkingen",
       "image": img_plastic,
-      "date": states('sensor.plastic_pakketjes_ophaaldag')
+      "date": states('sensor.verpakkingen_ophaaldag')
     },
     {
       "name": "Papier",
