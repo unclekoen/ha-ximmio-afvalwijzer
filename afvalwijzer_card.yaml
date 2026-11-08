@@ -16,27 +16,27 @@ content: >
     {
       "name": "Restafval",
       "image": img_restafval,
-      "date": states('sensor.non_recyclable_waste_pickup')
+      "date": states('sensor.restafval_ophaaldag')
     },
     {
       "name": "GFT",
       "image": img_gft,
-      "date": states('sensor.organic_waste_pickup')
+      "date": states('sensor.gft_ophaaldag')
     },
     {
-      "name": "Plastic/Pakketjes",
+      "name": "Verpakkingen",
       "image": img_plastic,
-      "date": states('sensor.packages_waste_pickup')
+      "date": states('sensor.plastic_pakketjes_ophaaldag')
     },
     {
       "name": "Papier",
       "image": img_papier_container,
-      "date": states('sensor.paper_waste_pickup')
+      "date": states('sensor.papier_ophaaldag')
     },
     {
       "name": "Kerstboom",
       "image": img_kerstboom,
-      "date": states('sensor.christmas_tree_waste_pickup')
+      "date": states('sensor.kerstboom_ophaaldag')
     }
   ] %}
 
