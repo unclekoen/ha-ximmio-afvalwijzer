@@ -18,13 +18,14 @@ UPDATE_INTERVAL = 480
 WASTE_TYPES = {
     "non_recyclable": "Restafval",
     "organic": "GFT",
-    "packages": "Plastic/Pakketjes",
+    "packages": "Verpakkingen",
     "paper": "Papier",
     "christmas_tree": "Kerstboom",
 }
 
 # Mapping van ximmio _pickupTypeText naar interne sleutels
 WASTE_TYPE_MAP = {
+    # Tekstnamen (nederlandstalig)
     "restafval": "non_recyclable",
     "gft": "organic",
     "groente": "organic",
@@ -36,4 +37,10 @@ WASTE_TYPE_MAP = {
     "oud papier": "paper",
     "kerstboom": "christmas_tree",
     "kerstbomen": "christmas_tree",
+    # Kleurcodes (zoals Twente Milieu retourneert)
+    "grey": "non_recyclable",
+    "green": "organic",
+    "packages": "packages",
+    "paper": "paper",
+    "christmastree": "christmas_tree",
 }
