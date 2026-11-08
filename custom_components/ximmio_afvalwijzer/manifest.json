@@ -1,7 +1,7 @@
 {
   "domain": "ximmio_afvalwijzer",
   "name": "Ximmio Afvalwijzer",
-  "version": "2026.11.0b1",
+  "version": "2026.11.0b2",
   "config_flow": true,
   "documentation": "https://github.com/unclekoen/ha-ximmio-afvalwijzer",
   "issue_tracker": "https://github.com/unclekoen/ha-ximmio-afvalwijzer/issues",
