@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026.11.0b2
+
+### Opgelost
+- `WASTE_TYPE_MAP` aangevuld met kleurcodes (`GREY`, `GREEN`, `PACKAGES`) die de Ximmio API retourneert — verpakkingen werd daardoor niet herkend
+- `manifest.json` opgeslagen zonder UTF-8 BOM waardoor HA de integratie niet kon laden
+
+### Gewijzigd
+- Afvaltype "Plastic/Pakketjes" hernoemd naar "Verpakkingen" in `const.py`, `afvalwijzer_card.yaml` en `README.md`
+- `afvalwijzer_card.yaml`: sensor-namen gecorrigeerd naar de juiste HA entity-IDs (`sensor.verpakkingen_ophaaldag` etc.)
+
+---
+
 ## 2026.11.0b1
 
 ### Gewijzigd
@@ -17,7 +29,7 @@
 ### Toegevoegd
 - Custom component met config flow, coordinator en sensor platform
 - Ximmio API integratie (`FetchAdress` + `GetCalendar`)
-- Sensoren voor restafval, GFT, plastic/pakketjes, papier en kerstboom
+- Sensoren voor restafval, GFT, verpakkingen, papier en kerstboom
 - Extra sensorattributen: `days_until` en `friendly_date`
 
 ---
